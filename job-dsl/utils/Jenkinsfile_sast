@@ -1,4 +1,4 @@
-@Library('jsl_core_http') _
+
 import groovy.json.JsonSlurper
 
 timeout(unit: 'HOURS', time: 2) {
