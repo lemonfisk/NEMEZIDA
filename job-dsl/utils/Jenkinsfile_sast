@@ -67,7 +67,7 @@ node {
 
                 if (component.depend_on) {
 
-                    def makefile_content = get_makefile_content(
+                    makefile_content = get_makefile_content(
                         component.depend_on,
                         productConfig["${productKey}"]["components"],
                         component.params.git_url
