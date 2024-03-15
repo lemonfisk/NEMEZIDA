@@ -15,7 +15,7 @@ JAPAN:
 
     - name: TOKIO
       params:
-        git_url: "git@github.com:lemonfisk/TOKIO.git"
+        git_url: "https://api.github.com/repos/lemonfisk/TOKIO"
         ptai_language: "Java"
         ptai_jdk_version: "11"
 
