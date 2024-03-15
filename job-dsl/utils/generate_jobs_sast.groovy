@@ -22,7 +22,7 @@ PRODUCT_CONFIG.each {product, config ->
                             git {
                                 remote {
                                     url('git@github.com:lemonfisk/NEMEZIDA.git')
-                                    credentials('SAST_id')
+                                    credentials('lemonfisk')
                                 }
                                 branch('develop/1.1.1')
                             }
