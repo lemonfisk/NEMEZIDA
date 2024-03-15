@@ -19,7 +19,9 @@ node {
         productConfig.each { productKey, productValue ->
             println "product_key - ${productKey} - ${productValue}"
             println "product_git_url - ${productValue.product_git_url}"
-            def defaultBranchOutput = sh(returnStdout: true, script: "curl -s ${productValue.product_git_url} | grep '"default_branch"' | awk -F'"' '{print $4}'").trim()
+            def defaultBranch = sh(script: "curl -s ${productValue.product_git_url} | grep '\"default_branch\"' | awk -F'\"' '{print $4}'", returnStdout: true).trim()
+
+
             println "defaultBranchOutput - ${defaultBranchOutput}"
 
             //def defaultBranch = defaultBranchOutput.tokenize('refs/heads/')[1]
