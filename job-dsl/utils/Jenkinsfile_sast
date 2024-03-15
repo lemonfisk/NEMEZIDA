@@ -6,12 +6,14 @@ node {
     def productConfig
 
     stage('Checkout repository') {
-        checkout([
-            $class: 'GitSCM',
-            branches: [[name: 'develop/1.1.1']],
-            userRemoteConfigs: [[url: 'git@github.com:lemonfisk/NEMEZIDA.git']]])
+        easyCheckout([
+            gitUrl: 'git@github.com:lemonfisk/NEMEZIDA.git',
+            checkoutBranch: 'develop/1.1.1'
+
 
         }
+
+
 
 
 
