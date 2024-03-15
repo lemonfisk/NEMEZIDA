@@ -5,10 +5,8 @@ def get_makefile_content(def project, def components_products) {
     components_products.each {component ->
         println "component----------${component}"
     }
-    makefile_content = "fdghdggfhgfh"
-    //def makefile_content = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${repo_url}/${def repo_branch}/Makefile", returnStdout: true)
 
-    return makefile_content
+
 }
 
 node {
@@ -40,7 +38,7 @@ node {
 
             def components = productValue.components
 
-            println "${components}"
+            println "all components of product ${productKey}-----${components}"
 
 
 
@@ -48,11 +46,10 @@ node {
             components.each { component ->
                 def component_name = component.name
                 println "component_name --------------${component_name}"
-
+                def component_git_url = component.params.git_url
+                println "component_git_url --------------${component_git_url}"
 
                 if (component.depend_on) {
-                    //def com_dep = component.depend_on
-                    //def example = productConfig["${productKey}"]["components"]
 
                     def result = get_makefile_content(
                         component.depend_on,
