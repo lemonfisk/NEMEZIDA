@@ -6,7 +6,7 @@ node {
     def productConfig
 
     stage("Setting repo checkout") {
-        withCredentials([usernamePassword(credentialsId: 'SAST_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
+        withCredentials([usernamePassword(credentialsId: 'SAST_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     checkout([
                         $class: 'GitSCM',
                         branches: [[name: 'develop/1.1.1']],
@@ -14,8 +14,8 @@ node {
                             credentialsId: 'SAST_id',
                             url: 'https://github.com/yourusername/NEMEZIDA.git']]])
 
-
-                    }
+        }
+    }
 
 
 
