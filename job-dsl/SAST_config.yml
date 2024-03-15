@@ -18,27 +18,14 @@ JAPAN:
         git_url: "git@github.com:lemonfisk/TOKIO.git"
         ptai_language: "Java"
         ptai_jdk_version: "11"
-      depend_on:
-        - name: PREFECTURA
-          params:
-            project_git_branch: "develop/1.1.5"
-            git_url: "git@github.com:lemonfisk/PREFECTURA.git"
-            ptai_language: "Java"
-            ptai_jdk_version: "17"
-        - name: MERLIN
-          params:
-            project_git_branch: "develop/1.1.5"
-            git_url: "git@github.com:lemonfisk/PREFECTURA.git"
-            ptai_language: "Java"
-            ptai_jdk_version: "17"
 
-#    - name: PREFECTURA
-#      depend_on: TOKIO
-#      params:
-#        project_git_branch: "develop/1.1.5"
-#        git_url: "git@github.com:lemonfisk/PREFECTURA.git"
-#        ptai_language: "Java"
-#        ptai_jdk_version: "17"
+
+    - name: PREFECTURA
+      depend_on: TOKIO
+      params:
+        git_url: "git@github.com:lemonfisk/PREFECTURA.git"
+        ptai_language: "Java"
+        ptai_jdk_version: "17"
 
 CHINA:
   rootDir: "CHINA/SAST"

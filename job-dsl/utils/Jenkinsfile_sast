@@ -1,7 +1,11 @@
 import groovy.json.JsonSlurper
 
-def get_makefile_content(def project, def components_products) {
+
+def get_makefile_content(def project, def components_products, def component_url) {
     println "project------------------${project}"
+
+
+
     components_products.each {component ->
         println "component----------${component}"
     }
@@ -53,7 +57,8 @@ node {
 
                     def result = get_makefile_content(
                         component.depend_on,
-                        productConfig["${productKey}"]["components"]
+                        productConfig["${productKey}"]["components"],
+                        component.params.git_url
                     )
 
 
