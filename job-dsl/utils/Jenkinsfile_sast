@@ -31,6 +31,7 @@ node {
             def components = productValue.components
             components.each { component ->
                 def component_name = component.name
+
                 try {
                     branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":=")[1]
                 } catch (e) {
