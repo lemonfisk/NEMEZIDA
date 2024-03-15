@@ -20,7 +20,8 @@ node {
             println "product_key - ${productKey} - ${productValue}"
             println "product_git_url - ${productValue.product_git_url}"
             //def gitUrl = 'https://github.com/username/repository.git'
-            //def defaultBranch = sh(returnStdout: true, script: "git ls-remote --symref ${gitUrl} HEAD").trim().tokenize(" ")[1]
+            def defaultBranch = sh(returnStdout: true, script: "git ls-remote --symref ${productValue.product_git_url} HEAD").trim().tokenize(" ")[1]
+            println "defaultBranch - ${defaultBranch}"
         }
     }
 
