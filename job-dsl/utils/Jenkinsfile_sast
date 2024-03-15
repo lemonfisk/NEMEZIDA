@@ -39,9 +39,12 @@ node {
             println "makefile_content - ${makefile_content}"
 
             def components = productValue.components
+
             components.each { component ->
                 def component_name = component.name
                 println "component_name --------------${component_name}"
+                def git_url = productConfig["${component_name}"]["components"]["params"]["git_url"]
+                println "git_url --------------${git_url}"
 
                 if (component.depend_on) {
                     //def com_dep = component.depend_on
@@ -52,9 +55,7 @@ node {
                         productConfig["${productKey}"]["components"]
                     )
 
-                    println "${result}"
-                    println "component_branch not found"
-                    println "component.depend_on -----${component.depend_on}"
+
                     branchComponent = "666"
                 } else {
                     try {
