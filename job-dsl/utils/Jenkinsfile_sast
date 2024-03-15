@@ -89,7 +89,6 @@ node {
                                 removedViewAction: 'DELETE',
                                 unstableOnDeprecation: true,
                                 lookupStrategy: 'JENKINS_ROOT',
-                                sandbox: true,
                                 additionalParameters: [
                                        PRODUCT_CONFIG    : productConfig
                                 ]
