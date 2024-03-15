@@ -42,7 +42,7 @@ node {
 
                 if (component.depend_on) {
                     def com_dep = component.depend_on
-                    def example = productConfig["${productKey}"]
+                    def example = productConfig["${productKey}"]["components"]
                     println "!!!!!------------------- ${example}"
                     def result = get_makefile_content()
                     println "${result}"
