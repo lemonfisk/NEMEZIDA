@@ -6,7 +6,7 @@ node {
     def productConfig
 
     stage('Build') {
-        productConfig = readYaml (file: "${rootDir}/job-dsl/SAST_config.yml")
+        productConfig = readYaml (file: "job-dsl/SAST_config.yml")
     }
 
     stage('Test') {
