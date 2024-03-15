@@ -17,10 +17,7 @@ node {
 
     stage('Get product version and default branch products') {
         productConfig.each { productKey, productValue ->
-            println "product_key - ${productKey} - ${productValue}"
             def git_url = productValue.product_git_url
-            println "product_git_url - ${productValue.product_git_url}"
-
             def defaultBranchOutput = sh(script: "curl -s ${git_url} | grep '\"default_branch\"'", returnStdout: true).trim()
             def defaultBranch = defaultBranchOutput.replaceAll(/.*": "(.*?)".*/, '$1')
 
