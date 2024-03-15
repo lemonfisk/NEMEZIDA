@@ -23,7 +23,7 @@ node {
             def defaultBranchOutput = sh(returnStdout: true, script: "git ls-remote --symref ${productValue.product_git_url} HEAD").trim()
             def defaultBranch = defaultBranchOutput.tokenize("\t")[1].tokenize("/").last()
 
-
+            println "defaultBranchOutput - ${defaultBranchOutput}"
             println "defaultBranch - ${defaultBranch}"
             //def version = defaultBranch.tokenize('/')[2] // Получение версии из ветки
             //println "version - ${version}"
