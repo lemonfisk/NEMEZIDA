@@ -1,7 +1,10 @@
 import groovy.json.JsonSlurper
 
-def get_makefile_content() {
-
+def get_makefile_content(def project, def components_products) {
+    println "project------------------${project}"
+    components_products.each {component ->
+        println "component----------${component}"
+    }
     makefile_content = "fdghdggfhgfh"
     //def makefile_content = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${repo_url}/${def repo_branch}/Makefile", returnStdout: true)
 
@@ -41,10 +44,13 @@ node {
                 println "component_name --------------${component_name}"
 
                 if (component.depend_on) {
-                    def com_dep = component.depend_on
-                    def example = productConfig["${productKey}"]["components"]
-                    println "!!!!!------------------- ${example}"
-                    def result = get_makefile_content()
+                    //def com_dep = component.depend_on
+                    //def example = productConfig["${productKey}"]["components"]
+                    def result = get_makefile_content(
+                        component.depend_on,
+                        productConfig["${productKey}"]["components"]
+                    )
+
                     println "${result}"
                     println "component_branch not found"
                     println "component.depend_on -----${component.depend_on}"
