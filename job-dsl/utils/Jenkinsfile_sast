@@ -20,9 +20,9 @@ node {
             def git_url = productValue.product_git_url
             def defaultBranchOutput = sh(script: "curl -s ${git_url} | grep '\"default_branch\"'", returnStdout: true).trim()
             def defaultBranch = defaultBranchOutput.replaceAll(/.*": "(.*?)".*/, '$1')
-
-
             println "defaultBranch - ${defaultBranch}"
+            def product_version = inputString.replaceAll(/.*\/([^\"]+)".*/, '$1')
+            println "product_version - ${product_version}"
 
             //def defaultBranch = defaultBranchOutput.tokenize('refs/heads/')[1]
             //.tokenize(' HEAD')[0]
