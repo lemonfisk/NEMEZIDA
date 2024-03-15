@@ -42,7 +42,7 @@ node {
 
                 if (component.depend_on) {
                     def com_dep = component.depend_on
-                    println "!!!!!------------------- ${productConfig.productKey}"
+                    println "!!!!!------------------- ${productConfig['productKey']}"
                     def result = get_makefile_content()
                     println "${result}"
                     println "component_branch not found"
