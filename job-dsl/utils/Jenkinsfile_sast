@@ -1,0 +1,35 @@
+@Library('jsl_core_http') _
+import groovy.json.JsonSlurper
+
+timeout(unit: 'HOURS', time: 2) {
+    ansiColor('xterm') {
+        timestamps {
+                node("woi-rhel7") {
+                    def rootDir = pwd()
+                    def productConfig
+                    stage("Setting repo checkout") {
+                        easyCheckout(
+                                gitUrl: env.SETTINGS_REPO,
+                                checkoutBranch: env.SETTINGS_BRANCH,
+                                credentialsId: 'deploy_key',
+                                wipeWorkspace: true,
+                        )
+                    }
+
+                    stage("Read JDSL configs"){
+                        productConfig = readYaml (file: "${rootDir}/job-dsl/SAST_config.yml")
+                    }
+
+
+
+                    stage("Get version component in product") {
+                        println "productConfig -----${productConfig}"
+                    }
+
+
+
+                }
+
+        }
+    }
+}

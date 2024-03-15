@@ -1,0 +1,50 @@
+---
+JAPAN:
+  rootDir: "JAPAN/SAST"
+  product_git_url: "git@github.com:lemonfisk/JAPAN.git"
+  components:
+    - name: YOKO
+      params:
+        project_git_branch: "develop/1.1.2"
+        git_url: "git@github.com:lemonfisk/YOKO.git"
+        ptai_language: "Python"
+
+    - name: FUDZI
+      params:
+        project_git_branch: "develop/1.1.3"
+        git_url: "git@github.com:lemonfisk/FUDZI.git"
+        ptai_language: "Python"
+
+    - name: TOKIO
+      params:
+        project_git_branch: "develop/1.1.5"
+        git_url: "git@github.com:lemonfisk/TOKIO.git"
+        ptai_language: "Java"
+        ptai_jdk_version: "11"
+
+    - name: PREFECTURA
+      depend_on: TOKIO
+      params:
+        project_git_branch: "develop/1.1.5"
+        git_url: "git@github.com:lemonfisk/PREFECTURA.git"
+        ptai_language: "Java"
+        ptai_jdk_version: "17"
+
+CHINA:
+  rootDir: "CHINA/SAST"
+  product_git_url: "git@github.com:lemonfisk/CHINA.git"
+  components:
+    - name: PEKIN
+      params:
+        project_git_branch: "develop/1.1.4"
+        git_url: "git@github.com:lemonfisk/PEKIN.git"
+        ptai_language: "JavaScript"
+
+RUSSIA:
+  rootDir: "RUSSIA/SAST"
+  product_git_url: "git@github.com:lemonfisk/RUSSIA.git"
+  components:
+    - name: RUSSIA
+      params:
+        project_git_branch: "develop/3.7.1"
+        ptai_language: "Python"
