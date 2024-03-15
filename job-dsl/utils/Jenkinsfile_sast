@@ -6,10 +6,15 @@ node {
     def productConfig
 
     stage("Setting repo checkout") {
-                        easyCheckout(
-                               gitUrl: 'git@github.com:lemonfisk/NEMEZIDA.git',
-                               checkoutBranch: 'develop/1.1.1'
-                        )
+        withCredentials([usernamePassword(credentialsId: 'SAST_id', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: 'develop/1.1.1']],
+                        userRemoteConfigs: [[
+                            credentialsId: 'SAST_id',
+                            url: 'https://github.com/yourusername/NEMEZIDA.git']]])
+
+
                     }
 
 
