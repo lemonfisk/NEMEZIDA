@@ -19,12 +19,12 @@ node {
         productConfig.each { productKey, productValue ->
             println "product_key - ${productKey} - ${productValue}"
             println "product_git_url - ${productValue.product_git_url}"
-            def defaultBranchOutput = sh(returnStdout: true, script: "git ls-remote --symref ${productValue.product_git_url} HEAD").trim()
+            def defaultBranchOutput = sh(returnStdout: true, script: "curl -s ${productValue.product_git_url} | grep '"default_branch"' | awk -F'"' '{print $4}'").trim()
             println "defaultBranchOutput - ${defaultBranchOutput}"
 
-            def defaultBranch = defaultBranchOutput.tokenize('refs/heads/')[1]
+            //def defaultBranch = defaultBranchOutput.tokenize('refs/heads/')[1]
             //.tokenize(' HEAD')[0]
-            println "defaultBranch - ${defaultBranch}"
+            //println "defaultBranch - ${defaultBranch}"
 
             //def version = defaultBranch.tokenize('/')[1] // Получение версии из ветки
 
