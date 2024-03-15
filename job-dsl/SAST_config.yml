@@ -27,6 +27,13 @@ JAPAN:
         ptai_language: "Java"
         ptai_jdk_version: "17"
 
+    - name: MERLIN
+      depend_on: TOKIO
+      params:
+        git_url: "git@github.com:lemonfisk/MERLIN.git"
+        ptai_language: "JavaTERSA"
+        ptai_jdk_version: "48"
+
 CHINA:
   rootDir: "CHINA/SAST"
   product_git_url: "https://api.github.com/repos/lemonfisk/CHINA"
