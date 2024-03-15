@@ -31,14 +31,15 @@ node {
             def components = productValue.components
             components.each { component ->
                 def component_name = component.name
+                println "component_name --------------${component_name}"
 
-                try {
-                    branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":=")[1]
-                } catch (e) {
-                    println "component_branch not found"
-                    branchComponent = 666
-                    }
-                    component.params.version = branchComponent
+                //try {
+                //    branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":=")[1]
+                //} catch (e) {
+                 //   println "component_branch not found"
+                  //  branchComponent = 666
+                  //  }
+                  //  component.params.version = branchComponent
             }
         }
     }
