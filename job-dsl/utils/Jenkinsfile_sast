@@ -55,7 +55,7 @@ node {
                     println "${result}"
                     println "component_branch not found"
                     println "component.depend_on -----${component.depend_on}"
-                    branchComponent = 666
+                    branchComponent = "666"
                 } else {
                     try {
                         branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
