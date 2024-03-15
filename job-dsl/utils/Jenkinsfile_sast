@@ -65,7 +65,7 @@ node {
                     }
 
                 }
-                component.params.version = branchComponent
+                component.params.project_git_branch = branchComponent
 
 
 
