@@ -5,14 +5,12 @@ node {
     def rootDir = pwd()
     def productConfig
 
-    stage('Checkout repository') {
-        easyCheckout([
-            gitUrl: 'git@github.com:lemonfisk/NEMEZIDA.git',
-            checkoutBranch: 'develop/1.1.1'
-
-
-        }
-
+    stage("Setting repo checkout") {
+                        easyCheckout(
+                               gitUrl: 'git@github.com:lemonfisk/NEMEZIDA.git',
+                               checkoutBranch: 'develop/1.1.1'
+                        )
+                    }
 
 
 
