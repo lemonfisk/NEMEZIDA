@@ -1,5 +1,10 @@
 import groovy.json.JsonSlurper
 
+def get_makefile_content() {
+    //def makefile_content = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${productKey}/${defaultBranch}/Makefile", returnStdout: true)
+    def makefile_content = "HOHHHHHHHHHHHH"
+    return makefile_content
+}
 
 node {
     def rootDir = pwd()
@@ -37,6 +42,9 @@ node {
                     branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
                     println "branchComponent --- ${branchComponent}"
                 } catch (e) {
+                    def result = get_makefile_content()
+                    println "${result}"
+
                     println "component_branch not found"
                     branchComponent = 666
                     }
