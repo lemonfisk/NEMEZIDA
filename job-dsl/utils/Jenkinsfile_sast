@@ -6,9 +6,12 @@ node {
     def productConfig
 
     stage("Setting repo checkout") {
-        git 'git@github.com:lemonfisk/NEMEZIDA.git'
-        
+        checkout scmGit(
+            branches: [[name: 'develop/1.1.1']],
+            userRemoteConfigs: [[url: 'git@github.com:lemonfisk/NEMEZIDA.git']])
     }
+
+
 
 
 
