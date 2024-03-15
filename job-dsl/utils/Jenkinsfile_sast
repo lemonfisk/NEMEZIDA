@@ -53,23 +53,6 @@ node {
                 component.params.version = branchComponent
 
 
-/*
-                try {
-                    branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
-                    println "branchComponent --- ${branchComponent}"
-                } catch (e) {
-                    if (component.depend_on) {
-                        //def result = get_makefile_content(component, component.depend_on, )
-                        //println "${result}"
-                        println "component_branch not found"
-                        println "component.depend_on -----${component.depend_on}"
-                        branchComponent = 666
-
-                        }
-                    }
-                    component.params.version = branchComponent
-                  */
-
 
             }
         }
