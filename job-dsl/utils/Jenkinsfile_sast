@@ -9,6 +9,7 @@ def get_makefile_content(def project, def components_products, def component_url
         if (component.name == project ) {
             println "git url component ${project}----------${component.params.git_url}"
 
+
             def defaultBranchOutput = sh(script: "curl -s ${component.params.git_url} | grep '\"default_branch\"'", returnStdout: true).trim()
             def defaultBranch = defaultBranchOutput.replaceAll(/.*": "(.*?)".*/, '$1')
             println "defaultBranch depen on - ${defaultBranch}"
