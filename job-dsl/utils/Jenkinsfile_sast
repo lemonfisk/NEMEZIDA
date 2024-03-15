@@ -5,6 +5,16 @@ node {
     def rootDir = pwd()
     def productConfig
 
+    stage('Checkout repository') {
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: 'develop/1.1.1']],
+            userRemoteConfigs: [[url: 'git@github.com:lemonfisk/NEMEZIDA.git']]])
+
+        }
+
+
+
     stage('Build') {
         productConfig = readYaml (file: "job-dsl/SAST_config.yml")
     }
