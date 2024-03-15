@@ -32,8 +32,10 @@ node {
             components.each { component ->
                 def component_name = component.name
                 println "component_name --------------${component_name}"
+
                 try {
                     branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
+                    println "branchComponent --- ${branchComponent}"
                 } catch (e) {
                     println "component_branch not found"
                     branchComponent = 666
