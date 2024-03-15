@@ -12,7 +12,7 @@ node {
                         branches: [[name: 'develop/1.1.1']],
                         userRemoteConfigs: [[
                             credentialsId: 'gitlogin',
-                            url: 'https://github.com/yourusername/NEMEZIDA.git']]])
+                            url: 'git@github.com:lemonfisk/NEMEZIDA.git']]])
 
         }
     }
