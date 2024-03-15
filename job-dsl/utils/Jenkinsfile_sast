@@ -40,6 +40,20 @@ node {
                 def component_name = component.name
                 println "component_name --------------${component_name}"
 
+                if (component.depend_on) {
+                    def result = get_makefile_content()
+                    println "${result}"
+                    println "component_branch not found"
+                    println "component.depend_on -----${component.depend_on}"
+                    branchComponent = 666
+                } else {
+                    branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
+                    println "branchComponent --- ${branchComponent}"
+                }
+                component.params.version = branchComponent
+
+
+/*
                 try {
                     branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
                     println "branchComponent --- ${branchComponent}"
@@ -54,6 +68,9 @@ node {
                         }
                     }
                     component.params.version = branchComponent
+                  */
+
+
             }
         }
     }
