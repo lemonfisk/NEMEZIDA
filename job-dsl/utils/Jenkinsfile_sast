@@ -2,6 +2,7 @@ import groovy.json.JsonSlurper
 
 //TOKIO   // YOKO FUDZI TOKIO PREFECTURA
 def get_makefile_content(def project, def components_products, def component_url) {
+    def makefile_content_depend
     println "project------------------${project}"
 
     components_products.each {component ->
