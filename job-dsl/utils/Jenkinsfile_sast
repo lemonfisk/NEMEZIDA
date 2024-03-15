@@ -36,7 +36,7 @@ node {
 
         }
     }
-def response = sh(script: "curl -s -H 'Private-Token: $gitlabApiToken' https://gitlab.nexign.com/api/v4/projects?search=${productKey}", returnStdout: true)
+
 
 
 
