@@ -43,8 +43,8 @@ node {
             components.each { component ->
                 def component_name = component.name
                 println "component_name --------------${component_name}"
-                def git_url = productConfig["${component_name}"]["components"]["params"]["git_url"]
-                println "git_url --------------${git_url}"
+                def git_url_component = productConfig["${component_name}"]["components"]["params"]["git_url"]
+                println "git_url_component --------------${git_url_component}"
 
                 if (component.depend_on) {
                     //def com_dep = component.depend_on
