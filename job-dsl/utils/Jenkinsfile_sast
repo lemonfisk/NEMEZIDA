@@ -23,28 +23,7 @@ node {
             println "defaultBranch - ${defaultBranch}"
             def product_version = defaultBranchOutput.replaceAll(/.*\/([^\"]+)".*/, '$1')
             println "product_version - ${product_version}"
-
-            //def defaultBranch = defaultBranchOutput.tokenize('refs/heads/')[1]
-            //.tokenize(' HEAD')[0]
-            //println "defaultBranch - ${defaultBranch}"
-
-            //def version = defaultBranch.tokenize('/')[1] // Получение версии из ветки
-
-
-
-            //def defaultBranch = defaultBranchOutput.tokenize("\t")[1].tokenize("/").last()
-            //println "defaultBranch - ${defaultBranch}"
-            //def version = defaultBranch.tokenize('/')[2] // Получение версии из ветки
-            //println "version - ${version}"
-
-
-
-
-
-
-
-
-
+            productConfig["${productKey}"]["product_version"] = "${product_version}"
 
         }
     }
