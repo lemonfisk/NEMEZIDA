@@ -18,6 +18,9 @@ node {
     stage('Get product version and default branch products') {
         productConfig.each { productKey, productValue ->
             println "product_key - ${productKey} - ${productValue}"
+            println "product_git_url - ${product_git_url}"
+            //def gitUrl = 'https://github.com/username/repository.git'
+            //def defaultBranch = sh(returnStdout: true, script: "git ls-remote --symref ${gitUrl} HEAD").trim().tokenize(" ")[1]
         }
     }
 
