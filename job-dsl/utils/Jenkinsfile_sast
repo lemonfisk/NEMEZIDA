@@ -67,12 +67,13 @@ node {
 
                 if (component.depend_on) {
 
-                    def result = get_makefile_content(
+                    def makefile_content = get_makefile_content(
                         component.depend_on,
                         productConfig["${productKey}"]["components"],
                         component.params.git_url
                     )
                     println "result - ${result}"
+                    branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
 
                 } else {
                     try {
