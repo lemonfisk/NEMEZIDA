@@ -46,6 +46,7 @@ node {
                 if (component.depend_on) {
                     //def com_dep = component.depend_on
                     //def example = productConfig["${productKey}"]["components"]
+
                     def result = get_makefile_content(
                         component.depend_on,
                         productConfig["${productKey}"]["components"]
@@ -79,4 +80,18 @@ node {
     stage('Test') {
         println "productConfig -----${productConfig}"
     }
+
+    stage("Create items"){
+                        jobDsl targets: "job-dsl/utils/generate_jobs_sast.groovy",
+                                failOnMissingPlugin: true,
+                                removedConfigFilesAction: 'DELETE',
+                                removedJobAction: 'DELETE',
+                                removedViewAction: 'DELETE',
+                                unstableOnDeprecation: true,
+                                lookupStrategy: 'JENKINS_ROOT',
+                                sandbox: true,
+                                additionalParameters: [
+                                       PRODUCT_CONFIG    : productConfig
+                                ]
+                    }
 }
