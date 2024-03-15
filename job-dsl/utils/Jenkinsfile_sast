@@ -2,7 +2,7 @@ import groovy.json.JsonSlurper
 
 //TOKIO   // YOKO FUDZI TOKIO PREFECTURA
 def get_makefile_content(def project, def components_products, def component_url) {
-    def makefile_content_depend
+    def makefile_content_depend = null
     println "project------------------${project}"
 
     components_products.each {component ->
@@ -13,7 +13,7 @@ def get_makefile_content(def project, def components_products, def component_url
             def defaultBranchOutput = sh(script: "curl -s ${component.params.git_url} | grep '\"default_branch\"'", returnStdout: true).trim()
             def defaultBranch = defaultBranchOutput.replaceAll(/.*": "(.*?)".*/, '$1')
             println "defaultBranch depen on - ${defaultBranch}"
-            def makefile_content_depend = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${project}/${defaultBranch}/Makefile", returnStdout: true)
+            makefile_content_depend = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${project}/${defaultBranch}/Makefile", returnStdout: true)
             println "makefile_content_depend - ${makefile_content_depend}"
 
 
