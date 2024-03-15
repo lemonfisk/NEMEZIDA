@@ -11,14 +11,19 @@ node {
             userRemoteConfigs: [[url: 'https://github.com/lemonfisk/NEMEZIDA.git']])
     }
 
-
-
-
-
-
     stage('Build') {
         productConfig = readYaml (file: "job-dsl/SAST_config.yml")
     }
+
+    stage('Get product version and default branch products') {
+        productConfig.each { productKey, productValue ->
+            println "product_key - ${productKey} - ${productValue}"
+        }
+    }
+
+
+
+
 
     stage('Test') {
         println "productConfig -----${productConfig}"

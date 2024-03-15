@@ -1,7 +1,7 @@
 ---
 JAPAN:
   rootDir: "JAPAN/SAST"
-  product_git_url: "git@github.com:lemonfisk/JAPAN.git"
+  product_git_url: "https://github.com/lemonfisk/JAPAN.git"
   components:
     - name: YOKO
       params:
@@ -32,7 +32,7 @@ JAPAN:
 
 CHINA:
   rootDir: "CHINA/SAST"
-  product_git_url: "git@github.com:lemonfisk/CHINA.git"
+  product_git_url: "https://github.com/lemonfisk/CHINA.git"
   components:
     - name: PEKIN
       params:
@@ -42,7 +42,7 @@ CHINA:
 
 RUSSIA:
   rootDir: "RUSSIA/SAST"
-  product_git_url: "git@github.com:lemonfisk/RUSSIA.git"
+  product_git_url: "https://github.com/lemonfisk/RUSSIA.git"
   components:
     - name: RUSSIA
       params:

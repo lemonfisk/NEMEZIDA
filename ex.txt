@@ -1,0 +1,30 @@
+stage('Get product version and default branch products') {
+                        withCredentials([string(credentialsId: 'deploy_token', variable: 'gitlabApiToken')]) {
+                            productConfig.each { productKey, productValue ->
+                                def response = sh(script: "curl -s -H 'Private-Token: $gitlabApiToken' https://gitlab.nexign.com/api/v4/projects?search=${productKey}", returnStdout: true)
+                                def responseJson = readJSON text: response
+                                responseJson.each { item_response ->
+                                    if (item_response.ssh_url_to_repo == productValue.product_git_url) {
+                                        def default_branch_product = item_response.default_branch
+                                        def product_version = default_branch_product.replace("develop/", "")
+                                        productConfig["${productKey}"]["product_version"] = "${product_version}"
+                                        def makefile_content = sh(script: "curl -s -H 'Private-Token: $gitlabApiToken' https://gitlab.nexign.com/api/v4/projects/${item_response.id}/repository/files/Makefile/raw?ref=${default_branch_product}", returnStdout: true)
+                                        def components = productValue.components
+                                        components.each { component ->
+                                            def component_name = component.name
+                                            try {
+                                                branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":=")[1]
+                                            } catch (e) {
+                                                println "component_branch not found"
+                                                branchComponent = 666
+                                            }
+                                            component.params.version = branchComponent
+
+                                        }
+                                    }
+
+                                }
+                            }
+
+                        }
+                    }
