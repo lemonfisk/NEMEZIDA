@@ -47,10 +47,16 @@ node {
                     println "component.depend_on -----${component.depend_on}"
                     branchComponent = 666
                 } else {
-                    branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
-                    println "branchComponent --- ${branchComponent}"
+                    try {
+                        branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
+                        println "branchComponent --- ${branchComponent}"
+                    } catch (e) {
+                        println "vse norm"
+                    }
+
                 }
                 component.params.version = branchComponent
+
 
 
 
