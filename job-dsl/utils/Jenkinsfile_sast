@@ -1,13 +1,15 @@
 import groovy.json.JsonSlurper
 
-
+//TOKIO   // YOKO FUDZI TOKIO PREFECTURA
 def get_makefile_content(def project, def components_products, def component_url) {
     println "project------------------${project}"
 
-
-
     components_products.each {component ->
         println "component----------${component}"
+        if (component.name == project ) {
+            println "git url component ${project}----------${component.params.git_url}"
+
+        }
     }
 
 
@@ -50,8 +52,7 @@ node {
             components.each { component ->
                 def component_name = component.name
                 println "component_name --------------${component_name}"
-                def component_git_url = component.params.git_url
-                println "component_git_url --------------${component_git_url}"
+
 
                 if (component.depend_on) {
 
