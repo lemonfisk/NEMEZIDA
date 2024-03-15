@@ -72,7 +72,7 @@ node {
                         productConfig["${productKey}"]["components"],
                         component.params.git_url
                     )
-                    println "result - ${result}"
+                    println "result - ${makefile_content}"
                     branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
 
                 } else {
