@@ -8,7 +8,7 @@ node {
     stage("Setting repo checkout") {
         checkout scmGit(
             branches: [[name: 'develop/1.1.1']],
-            userRemoteConfigs: [[url: 'git@github.com:lemonfisk/NEMEZIDA.git']])
+            userRemoteConfigs: [[url: 'https://github.com/lemonfisk/NEMEZIDA.git']])
     }
 
 
