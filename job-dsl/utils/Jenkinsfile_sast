@@ -12,12 +12,12 @@ def get_makefile_content(def project, def components_products, def component_url
             def defaultBranchOutput = sh(script: "curl -s ${component.params.git_url} | grep '\"default_branch\"'", returnStdout: true).trim()
             def defaultBranch = defaultBranchOutput.replaceAll(/.*": "(.*?)".*/, '$1')
             println "defaultBranch depen on - ${defaultBranch}"
-            def makefile_content = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${project}/${defaultBranch}/Makefile", returnStdout: true)
-            println "makefile_content - ${makefile_content}"
+            def makefile_content_depend = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${project}/${defaultBranch}/Makefile", returnStdout: true)
+            println "makefile_content_depend - ${makefile_content_depend}"
 
-
+            return makefile_content_depend
         }
-        return makefile_content
+
 
     }
 
