@@ -14,9 +14,12 @@ def get_makefile_content(def project, def components_products, def component_url
             println "defaultBranch depen on - ${defaultBranch}"
             def makefile_content = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${project}/${defaultBranch}/Makefile", returnStdout: true)
             println "makefile_content - ${makefile_content}"
+
+            return makefile_content
         }
+      
     }
-    return makefile_content
+
 
 
 }
