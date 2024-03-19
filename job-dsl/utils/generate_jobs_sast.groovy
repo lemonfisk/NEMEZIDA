@@ -1,11 +1,15 @@
 import javaposse.jobdsl.dsl.Job
 
+
+    folder('rootDirER') {
+        description('Folder for project A')
+    }
+
+
+
 PRODUCT_CONFIG.each {product, config ->
     def rootDir = config.rootDir
 
-    folder(rootDir) {
-        description('Folder for project A')
-    }
 
     config.components.each { componentItem ->
         def jobName = "${rootDir}/${componentItem.name}"
