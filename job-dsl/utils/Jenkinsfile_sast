@@ -4,7 +4,7 @@ node {
 
     stage("Setting repo checkout") {
         checkout scmGit(
-            branches: [[name: 'develop/docker_file']],
+            branches: [[name: 'docker_file']],
             userRemoteConfigs: [[url: 'https://github.com/lemonfisk/NEMEZIDA.git']])
     }
 
