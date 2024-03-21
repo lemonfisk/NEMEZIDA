@@ -1,116 +1,22 @@
 import groovy.json.JsonSlurper
 
-//TOKIO   // YOKO FUDZI TOKIO PREFECTURA
-def get_makefile_content(def project, def components_products, def component_url) {
-    def makefile_content_depend = null
-    println "project------------------${project}"
-
-    components_products.each {component ->
-        println "component----------${component}"
-        if (component.name == project ) {
-            println "git url component ${project}----------${component.params.git_url}"
-
-            def defaultBranchOutput = sh(script: "curl -s ${component.params.git_url} | grep '\"default_branch\"'", returnStdout: true).trim()
-            def defaultBranch = defaultBranchOutput.replaceAll(/.*": "(.*?)".*/, '$1')
-            println "defaultBranch depen on - ${defaultBranch}"
-            makefile_content_depend = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${project}/${defaultBranch}/Makefile", returnStdout: true)
-            println "makefile_content_depend - ${makefile_content_depend}"
-
-
-        }
-
-
-    }
-    return makefile_content_depend
-
-
-}
-
 node {
-    def rootDir = pwd()
-    def productConfig
 
     stage("Setting repo checkout") {
         checkout scmGit(
-            branches: [[name: 'develop/1.1.1']],
+            branches: [[name: 'develop/docker_file']],
             userRemoteConfigs: [[url: 'https://github.com/lemonfisk/NEMEZIDA.git']])
     }
 
-    stage('Build') {
-        productConfig = readYaml (file: "job-dsl/SAST_config.yml")
-    }
 
     stage('Get product version and default branch products') {
-        productConfig.each { productKey, productValue ->
-            def git_url = productValue.product_git_url
-            def defaultBranchOutput = sh(script: "curl -s ${git_url} | grep '\"default_branch\"'", returnStdout: true).trim()
-            def defaultBranch = defaultBranchOutput.replaceAll(/.*": "(.*?)".*/, '$1')
-            println "defaultBranch - ${defaultBranch}"
-            def product_version = defaultBranchOutput.replaceAll(/.*\/([^\"]+)".*/, '$1')
-            println "product_version - ${product_version}"
-            productConfig["${productKey}"]["product_version"] = "${product_version}"
+        def git_url = ""
+        defaultBranch = "develop/5.2.7"
+        def docker_content  = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/TOKIO/${defaultBranch}/Dockerfile", returnStdout: true)
 
-            def makefile_content = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/${productKey}/${defaultBranch}/Makefile", returnStdout: true)
-            println "makefile_content - ${makefile_content}"
-
-            def components = productValue.components
-
-            println "all components of product ${productKey}-----${components}"
-
-
-
-
-            components.each { component ->
-                def component_name = component.name
-                println "component_name --------------${component_name}"
-
-
-                if (component.depend_on) {
-
-                    makefile_content = get_makefile_content(
-                        component.depend_on,
-                        productConfig["${productKey}"]["components"],
-                        component.params.git_url
-                    )
-                    println "result - ${makefile_content}"
-                    branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
-
-                } else {
-                    try {
-                        branchComponent = "develop/" + (makefile_content.find(/$component.name:=(\d+\.\d+\.\d+)/)).tokenize(":= ")[1]
-                        println "branchComponent --- ${branchComponent}"
-                    } catch (e) {
-                        println "vse norm"
-                    }
-
-                }
-                component.params.project_git_branch = branchComponent
-
-
-
-
-            }
-        }
+        content = sh(script: "grep -ioP '(?<=^from)\s+\S+' ${docker_content} | head -n 1 | cut -d ' ' -f 2)", returnStdout: true)
+        println content
     }
 
 
-
-
-    stage('Test') {
-        println "productConfig -----${productConfig}"
-    }
-
-    stage("Create items"){
-                        jobDsl targets: "job-dsl/utils/generate_jobs_sast.groovy",
-                                failOnMissingPlugin: true,
-                                removedConfigFilesAction: 'DELETE',
-                                removedJobAction: 'DELETE',
-                                removedViewAction: 'DELETE',
-                                unstableOnDeprecation: true,
-                                lookupStrategy: 'JENKINS_ROOT',
-
-                                additionalParameters: [
-                                       PRODUCT_CONFIG    : productConfig
-                                ]
-                    }
 }
