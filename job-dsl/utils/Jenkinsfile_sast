@@ -16,7 +16,14 @@ node {
         println "docker_content - ${docker_content}"
         //content = sh(script: "grep -ioP '(?<=^from)\\s+\\S+' ${docker_content} | head -n 1 | cut -d ' ' -f 2", returnStdout: true)
         //content = sh(script: "grep -ioP '(?<=^from)\s+\S+' ${docker_content} | head -n 1 | cut -d ' ' -f 2)", returnStdout: true)
-        content = sh(script: "echo ${docker_content} | grep -ioP '(?<=^from)\\s+\\S+' | head -n 1 | cut -d ' ' -f 2", returnStdout: true)
+        //content = sh(script: "echo ${docker_content} | grep -ioP '(?<=^from)\\s+\\S+' | head -n 1 | cut -d ' ' -f 2", returnStdout: true)
+
+        content = (docker_content.find(/FROM (\d+\.\d+\.\d+)/))
+        
+        //.tokenize(":= ")[1]
+
+
+
         println "content - ${content}"
     }
 
