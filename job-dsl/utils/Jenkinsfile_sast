@@ -14,8 +14,9 @@ node {
         defaultBranch = "develop/5.2.7"
         def docker_content  = sh(script: "curl https://raw.githubusercontent.com/lemonfisk/TOKIO/${defaultBranch}/Dockerfile", returnStdout: true)
         println "docker_content - ${docker_content}"
-        content = sh(script: "grep -ioP '(?<=^from)\\s+\\S+' ${docker_content} | head -n 1 | cut -d ' ' -f 2", returnStdout: true)
+        //content = sh(script: "grep -ioP '(?<=^from)\\s+\\S+' ${docker_content} | head -n 1 | cut -d ' ' -f 2", returnStdout: true)
         //content = sh(script: "grep -ioP '(?<=^from)\s+\S+' ${docker_content} | head -n 1 | cut -d ' ' -f 2)", returnStdout: true)
+        content = sh(script: "echo ${docker_content} | grep -ioP '(?<=^from)\\s+\\S+' | head -n 1 | cut -d ' ' -f 2", returnStdout: true)
         println "content - ${content}"
     }
 
